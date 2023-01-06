@@ -1,0 +1,48 @@
+{
+  "name": "vuetify-file-browser",
+  "version": "1.0.2",
+  "description": "Open source file manager component for Vue.js. Requires Vuetify v2.0 or higher",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/semeniuk/vuetify-file-browser.git"
+  },
+  "keywords": [
+    "File",
+    "Browser",
+    "Vuetify",
+    "Vue"
+  ],
+  "author": "Yurii Semeniuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/semeniuk/vuetify-file-browser/issues"
+  },
+  "homepage": "https://github.com/semeniuk/vuetify-file-browser#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.6.0",
+    "axios": "^0.19.0",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "autoprefixer": "^9.6.1",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.0.0",
+    "cssnano": "^4.1.10",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.12.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "vue-loader": "^15.7.0",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6"
+  }
+}

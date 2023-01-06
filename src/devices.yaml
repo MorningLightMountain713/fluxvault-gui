@@ -1,0 +1,206 @@
+---
+data:
+  esy4-br-2:
+    manufacturer: juniper
+    location: esy4
+    role: border_router
+    hardware_profile:
+      # this can be modeled from a drag and drop GUI
+      model: mx480
+      re:
+        re0:
+          type: RE-S-2X00x6
+        re1:
+          type: RE-S-2X00x6
+      fpc:
+        fpc0:
+          type: MPC7E 3D MRATE-12xQSFPP-XGE-XLGE-CGE
+        fpc2:
+          type: MPC7E 3D MRATE-12xQSFPP-XGE-XLGE-CGE
+      pic:
+        fpc0-pic0:
+          type: MRATE-6xQSFPP-XGE-XLGE-CGE
+        fpc0-pic1:
+          type: MRATE-6xQSFPP-XGE-XLGE-CGE
+      transceivers:
+        fpc0-pic0-xcvr0:
+          type: QSFP+-4X10G-LR
+        fpc0-pic0-xcvr2:
+          type: QSFP-100GBASE-LR4
+        fpc0-pic0-xcvr5:
+          type: QSFP28-100G-AOC
+        fpc0-pic1-xcvr0:
+          type: QSFP+-4X10G-LR
+        fpc0-pic1-xcvr2:
+          type: QSFP-100GBASE-LR4
+        fpc0-pic1-xcvr5:
+          type: QSFP-100GBASE-LR4
+        fpc2-pic0-xcvr0:
+          type: QSFP+-4X10G-LR
+        fpc2-pic0-xcvr2:
+          type: QSFP-100GBASE-LR4-T2
+        fpc2-pic0-xcvr5:
+          type: QSFP-100GBASE-LR4-T2
+        fpc2-pic1-xcvr0:
+          type: QSFP-100GBASE-LR4-T2
+        fpc2-pic1-xcvr3:
+          type: QSFP+-4X10G-LR
+        fpc2-pic1-xcvr5:
+          type: QSFP-100GBASE-LR4-T2
+    functional_specification:
+      overrides: []
+      interfaces:
+        lt-0/0/0.1:
+          desc: Nathan test game server
+          addressing: ["103.241.59.197/30"]
+        ae5.1:
+          desc: NSWIX
+          addressing: ["218.100.52.229/23", "2001:7fa:11:4:0:da2a:0:1/64"]
+      # components:
+      #   - customer_edge
+      #   - peering
+      #   - transit
+      #   - pni
+      #   - rpki
+      #   - netflow_collector
+  mod-p-1:
+    manufacturer: juniper
+    location: mod
+    role: core_router
+    hardware_profile:
+      model: qfx5200-32c-32q
+      re:
+        0:
+          type: RE-QFX5200-32C-32Q
+      fpc:
+        0:
+          type: QFX5200-32C-32Q
+      pic:
+        0:
+          type: 32X40G/32X100G-QSFP
+      transceivers:
+        # leave these as mappings for extensibility
+        # fpc-pic-xcvr
+        0/0/0:
+          type: QSFP-100GBASE-LR4
+        0/0/1:
+          type: QSFP+-4X10G-LR
+        0/0/2:
+          type: QSFP-100GBASE-LR4-T2
+        0/0/5:
+          type: SFP+-10G-LR
+        0/0/6:
+          type: QSFP28-100G-AOC-1M
+        0/0/8:
+          type: QSFP-100GBASE-SR4
+        0/0/9:
+          type: QSFP28-100G-AOC-1M
+        0/0/10:
+          type: QSFP-100GBASE-LR4-T2
+        0/0/11:
+          type: QSFP-100GBASE-LR4
+        0/0/12:
+          type: QSFP-100GBASE-LR4
+        0/0/15:
+          type: QSFP-100GBASE-SR4
+        0/0/16:
+          type: QSFP-100GBASE-LR4-T2
+        0/0/17:
+          type: QSFP-100GBASE-LR4
+        0/0/18:
+          type: QSFP-100GBASE-SR4
+        0/0/19:
+          type: QSFP-100GBASE-LR4
+        0/0/20:
+          type: QSFP28-100G-AOC-1M
+        0/0/24:
+          type: QSFP-100GBASE-SR4
+        0/0/26:
+          type: QSFP-100GBASE-LR4
+        0/0/30:
+          type: QSFP-100GBASE-LR4
+        0/0/31:
+          type: QSFP-100GBASE-LR4
+    functional_specification:
+      overrides: [] # is this needed?
+      interfaces:
+        # for interfaces, if .unit missing, it is assumed to be .0
+        et-0/0/0:
+          desc: mod-p-2 et-0/0/0
+          addressing: [116.251.184.18/31, 2406:5a00:0:1::3:59/126]
+          isis_metric: 1
+        xe-0/0/1:0:
+          desc: mod-dr-1 xe-0/3/0
+          addressing: [116.251.184.221/31]
+        xe-0/0/1:1:
+          desc: mod-rr-1 em2
+          addressing: [116.251.184.235/31]
+          isis_metric: 5000
+          type: other
+          config:
+            mtu: 9216
+            hold_time: up 3000 down 50
+            units:
+              0:
+                family:
+                  iso: true
+        et-0/0/2:
+          desc: mod-nr-1 et-1/1/0
+          addressing: [116.251.184.45/31, 2406:5a00:0:1::3:27a/126]
+        et-0/0/6:
+          desc: mod-bng-2 et-0/0/0
+          addressing: [116.251.185.78/31, 2406:5a00:0:1::3:79/126]
+        et-0/0/8:
+          desc: mod-cdr-1 et-0/0/0
+          addressing: [116.251.185.11/31, 2406:5a00:0:1::3:81/126]
+        et-0/0/9:
+          desc: mod-ar-3 et-0/1/0
+          addressing: [116.251.185.218/31, 2406:5a00:0:1::3:1f9/126]
+          isis_metric: 36
+        et-0/0/10:
+          desc: mod-cdr-2 et-0/0/0
+          addressing: [116.251.184.197/31, 2406:5a00:0:1::3:89/126]
+        et-0/0/11:
+          desc: mod-sr-2 et-0/0/3
+          addressing: [116.251.185.109/31, 2406:5a00:0:1::3:15d/126]
+        et-0/0/12:
+          desc: tg-ar-3 et-0/1/1 | via DTS120977707 | via Q507 F1/2 | n:false
+          addressing: [103.26.202.23/31, 2406:5a00:0:1::3:35a/126]
+          state: disabled
+          isis_metric: 500
+        et-0/0/15:
+          desc: mod-bng-1 et-0/0/0
+          addressing: [116.251.184.115/31, 2406:5a00:0:1::3:69/126]
+        et-0/0/16:
+          desc: mod-ir-1 et-1/1/0
+          addressing: [116.251.184.49/31, 2406:5a00:0:1::3:2dd/126]
+        et-0/0/18:
+          desc: mod-ber-1 et-0/0/0
+          addressing: [116.251.184.193/31, 2406:5a00:0:1::3:dd/126]
+        et-0/0/19:
+          desc: hn-p-1 et-0/0/24 | via VFNZ DWDM BKH22801140/1 | via Q483 F41/42 to VFNZ-FP098
+          addressing: [116.251.184.94/31, 2406:5a00:0:1::3:c9/126]
+        et-0/0/20:
+          desc: mod-ar-2 et-0/1/0
+          addressing: [116.251.185.230/31, 2406:5a00:0:1::3:1f1/126]
+        et-0/0/24:
+          desc: mod-bng-3 et-0/0/2
+          addressing: [116.251.185.74/31]
+        et-0/0/26:
+          desc: atc-p-1 et-0/0/25 | via Chorus ICAB 4000000370/4000000368 | via cwdm1 1310nm
+          addressing: [116.251.184.53/31, 2406:5a00:0:1::3:5e/126]
+          isis_metric: 16
+        et-0/0/30:
+          desc: mod-sr-1 et-0/0/0
+          addressing: [116.251.184.5/31, 2406:5a00:0:1::3:155/126]
+        et-0/0/31:
+          desc: 220-br-1 et-0/0/2 | via Chorus 4000013837/4000013842
+          addressing: [116.251.184.146/31, 2406:5a00:0:1::3:219/126]
+        lo0:
+          desc: Global loopback
+          type: global_loopback
+          addressing: [103.241.56.183/32]
+        vme:
+          desc: Manually Shut
+          type: other
+          state: disabled
